@@ -4,42 +4,28 @@ import java.time.DateTimeException
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DateFormatter {
 
     // TODO: Complete the following function
     fun toTextDay(day: String, month: String, year: String): String {
         //throw NotImplementedError("Not implemented")
-        var outStr = ""
+        var textOut = ""
 
         try {
             var date = LocalDate.of(year.toInt(), month.toInt(), day.toInt())
 
-            var monthForm = DateTimeFormatter.ofPattern("MMMM")
-            val textmonth = date.format(monthForm)
-            println(textmonth)
+            var outForm = DateTimeFormatter.ofPattern("d MMMM, EEEE", Locale("ru"))
+            textOut = date.format(outForm)
 
-            val textDayOfTheWeek = when (date.dayOfWeek) {
-                DayOfWeek.MONDAY -> "понедельник"
-                DayOfWeek.TUESDAY -> "вторник"
-                DayOfWeek.WEDNESDAY -> "среда"
-                DayOfWeek.THURSDAY -> "четверг"
-                DayOfWeek.FRIDAY -> "пятница"
-                DayOfWeek.SATURDAY -> "суббота"
-                DayOfWeek.SUNDAY -> "воскресенье"
-
-                else -> "Такого дня не существует"
-            }
-            println(textDayOfTheWeek)
-
-            outStr = "$day $textmonth, $textDayOfTheWeek"
         } catch (e: Exception) {
             //println("Exception")
-            outStr = "Такого дня не существует"
+            textOut = "Такого дня не существует"
         }
 
-        println(outStr)
-        return outStr
+        println(textOut)
+        return textOut
     }
 
 }
