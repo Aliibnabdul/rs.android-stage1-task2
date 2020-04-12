@@ -2,6 +2,8 @@ package subtask5
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.reflect.KClass
 
 class Blocks {
@@ -19,7 +21,7 @@ class Blocks {
             }
             LocalDate::class -> {
                 var al = blockA.filter { it is LocalDate } as ArrayList<LocalDate>
-                al.max()!!.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                al.max()!!.format(DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale("ru")))
             }
             else -> throw NotImplementedError("Not implemented")
         }
